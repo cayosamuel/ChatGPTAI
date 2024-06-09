@@ -184,6 +184,7 @@ public class AStarAlgorithm {
                         break;
                     } 
                 }
+                System.out.println("Found chemin: " + chemin);
             //Si un interrupteur est ouvert dans le chemin
             if (interrupteurState(specialNode, maisonNonConnecter,interrupteurs, grid, etat)) {
                 //Trouver le chemin qui match la position du special node (maison non connectée)
@@ -193,6 +194,7 @@ public class AStarAlgorithm {
                             //une fois l'interrupteur trouvé
                         if (grid[cell.getLigne()][cell.getColonne()] == 'i') {
                             parcoursEquipe = findPathEquipe(grid, etat.getEqPos(), cell);
+                            System.out.println("Path to interrupteur: " + parcoursEquipe);
                             //Ajoute le chemin à la solution
                             solution.addAll(Actions.transformpath(parcoursEquipe));
                             //Change la position de l'équipe à la position de l'interrupteur dans l'état initial
@@ -205,6 +207,7 @@ public class AStarAlgorithm {
                                         //conducteur brisé dans le chemin trouvé
                                 if (grid[cell2.getLigne()][cell2.getColonne()] == 'b') {
                                     parcoursEquipe = findPathEquipe(grid, etat.getEqPos(), cell2);
+                                    System.out.println("Path to broken conductor: " + parcoursEquipe);
                                     solution.addAll(Actions.transformpath(parcoursEquipe));
                                     //Change la position de l'équipe à la position du conducteur brisé dans l'état initial
                                     etat.setEqPos(cell2);
@@ -236,6 +239,7 @@ public class AStarAlgorithm {
                 for (Position b : chemin) {
                     if (grid[b.getLigne()][b.getColonne()] == 'b') {
                         parcoursEquipe = findPathEquipe(grid, etat.getEqPos(), b);
+                        System.out.println("Path to broken conductor without interrupteur: " + parcoursEquipe);
                         solution.addAll(Actions.transformpath(parcoursEquipe));
                         //Change la position de l'équipe à la position du conducteur brisé dans l'état initial
                         etat.setEqPos(b);
