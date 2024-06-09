@@ -97,6 +97,8 @@ public class AStarAlgorithm {
         return Collections.emptyList(); // Aucun chemin trouvé
     }
     
+    //Trouver la maison non connectée la plus proche de l'équipe la position de l'équipe
+    
     
     public static Position findClosesNoneConnectedHouse (State etat) {
       //Position de equipe dans l'état
