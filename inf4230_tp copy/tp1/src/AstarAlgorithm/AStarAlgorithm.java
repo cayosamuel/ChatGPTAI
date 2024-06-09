@@ -47,7 +47,10 @@ public class AStarAlgorithm {
             Node currentNode = openList.poll();
 
             if (currentNode.position.equals(goal) && currentNode.noeudSpecialVisite) {
-                return constructPath(currentNode);
+                List<Position> path = constructPath(currentNode);
+                //debugger to see if the path is found
+                System.out.println("Path found: " + path);
+                return path;
             }
 
             closedList.add(currentNode.position);
@@ -62,7 +65,8 @@ public class AStarAlgorithm {
                 }
             }
         }
-
+        //debugger to see if the path is found
+        System.out.println("No path found from " + start + " to " + goal);
         return Collections.emptyList(); // Aucun chemin trouvé
     }
     
@@ -183,6 +187,11 @@ public class AStarAlgorithm {
         System.out.println("Starting astar algorithm...");
         System.out.println("Special node: " + specialNode);
 
+        if (specialNode == null) {
+            System.out.println("No special node found, returning empty solution.");
+            return solution; // No special node found
+        }
+
         // Si un brise est trouvé dans le chemin
         if (brisFound(specialNode, maisonNonConnecter,conducteursbriser, grid, etat)) {
             //Trouver le chemin qui match la position du special node (maison non connectée)
@@ -268,7 +277,10 @@ public class AStarAlgorithm {
                 astar(grid, etat, maisonNonConnecter, interrupteurs, conducteursbriser, solution);
 
                }
-            } 
+            } else {
+            //Si aucun  conducteur briser, mais qu'on a un chemin, il faut aller ouvrir l'interrupteur et update la liste des maisons non connectées, puis on rappelle la fonction
+
+            }
             
         return solution;
     }

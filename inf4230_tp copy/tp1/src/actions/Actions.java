@@ -36,6 +36,9 @@ public class Actions {
                 break;
             }
         }
+        deplacements.add("R");
+        //debbug to see if we are changing the value of the conductors on the right index
+        System.out.println("Repairing conductor at index: " + index);
         return new State(currentState.getEqPos(), currentState.getInterrupteurs(), currentState.getBriser(), currentState.getMaisonPasconnecter(), newConductors);
     } 
 
@@ -49,7 +52,8 @@ public class Actions {
             }
         }
         deplacements.add("1");
-        
+        //debugg to see if we are changing the value of the interruptors on the right index
+        System.out.println("Switching on interrupteur at index: " + index);
         return new State(currentState.getEqPos(), newInterrupteurs, currentState.getBriser(), currentState.getMaisonPasconnecter(),currentState.getConducteursbriser());
     } 
 
@@ -63,6 +67,8 @@ public class Actions {
             }
         }
         deplacements.add("0");
+        //debugg to see if we are changing the value of the interruptors on the right index
+        System.out.println("Switching off interrupteur at index: " + index);
         return new State(currentState.getEqPos(), newInterrupteurs, currentState.getBriser(),currentState.getMaisonPasconnecter(),currentState.getConducteursbriser());
     } 
 
