@@ -103,6 +103,10 @@ public class TP1{
                 }
             }
         }
+        
+        // debugger set up print grid
+        printGrid(grid);
+        
         List<Chemin> listeChemins = new ArrayList<>();
 
         // Vérifier si l'équipe a été trouvée
@@ -129,6 +133,14 @@ public class TP1{
                 maisonPasconnecter.add(maison);
             }
         }
+
+        // debbuger print maisonPasconnecter
+        for (Position maison : maisonPasconnecter) {
+            System.out.println(maison.getLigne() + " " + maison.getColonne());
+        }
+
+        
+
 
         // Trouver le chemin de chaque source vers chaque maison et vérifier si la maison est connectée
         for (Position source : sources) {
@@ -163,9 +175,18 @@ public class TP1{
                 }
             }
         }
+        //debugger print maisonPasconnecter This prints twice for some reason
+        
+        for (Position maison : maisonPasconnecter) {
+            System.out.println(maison.getLigne() + " " + maison.getColonne());
+        }
+
 
         // Exécuter l'algorithme A*
         List<String> solution = AStarAlgorithm.astar(grid, etatInitial, listeChemins, interrupteurs, conducteurs, new ArrayList<>());
+
+        //debugger print solution
+        printSolution(solution);
 
         // Afficher la solution
         for (String action : solution) {
@@ -173,6 +194,24 @@ public class TP1{
         }
         System.out.println();
     }
+
+    public static void printGrid(char[][] grid) {
+        for (char[] row : grid) {
+            for (char cell : row) {
+                System.out.print(cell + " ");
+            }
+            System.out.println();
+        }
+    }
+
+    public static void printSolution(List<String> solution) {
+        for (String action : solution) {
+            System.out.print(action + " solution");
+        }
+        System.out.println();
+    }
+
+    
 
 
     

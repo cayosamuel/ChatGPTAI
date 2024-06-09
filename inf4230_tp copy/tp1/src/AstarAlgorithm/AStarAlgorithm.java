@@ -120,7 +120,7 @@ public class AStarAlgorithm {
     public static boolean brisFound(Position specialNode, List<Chemin> chemins,List<Position>conducteurs, char[][] grid, State etat) {
         boolean BrisFound = false;
         //Le chemin qui match la position du special node
-        Chemin chemin = new Chemin(null);
+        Chemin chemin = new Chemin(new ArrayList<>());
         for (Chemin c : chemins) {
             if (c.getMaison().equals(specialNode)) {
                 chemin = c;
