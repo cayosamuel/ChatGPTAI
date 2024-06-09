@@ -17,7 +17,7 @@ public class Chemin  implements Iterable<Position> {
             chemin = new ArrayList<>();
             this.source = source;
             this.maison = maison;
-            this.chemin = chemin;
+            this.chemin = chemin != null ? chemin : new ArrayList<>();
         }
 
         
