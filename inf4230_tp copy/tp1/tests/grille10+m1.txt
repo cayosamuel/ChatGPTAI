@@ -1,0 +1,25 @@
+Grille lue:
+##########################################################
+#                                                        #
+#             m                                          #
+#  ScccibbbccccccccccccccbiS                             #
+#                                            *           #
+##########################################################
+position équipe: 277 (4,45)
+
+Grille solution trouvée:
+##########################################################
+#                                                        #
+#             M                                          #
+#  SCCCIBbBCCCCCCCCCCCCCCCIS                             #
+#                                                        #
+##########################################################
+position équipe: 200 (3,26)
+
+Stats:
+ Nombre d'états générés:	198
+ Nombre d'états explorés:	176
+ Coût de la solution trouvée: 	25
+
+PLAN:
+N W W W W W W W W W W W W W W W W W W W 0 W R E 1 

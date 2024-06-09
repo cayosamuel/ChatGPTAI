@@ -1,0 +1,21 @@
+Grille lue:
+########################
+#*                     #
+# Sm                   #
+########################
+position équipe: 25 (1,1)
+
+Grille solution trouvée:
+########################
+#*                     #
+# SM                   #
+########################
+position équipe: 25 (1,1)
+
+Stats:
+ Nombre d'états générés:	1
+ Nombre d'états explorés:	1
+ Coût de la solution trouvée: 	0
+
+PLAN:
+

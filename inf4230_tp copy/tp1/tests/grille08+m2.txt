@@ -1,0 +1,63 @@
+Grille lue:
+########################################################################
+#  S    #     #                                                      * #
+#  i    #     #                        #                               #
+#  c    #     ##########################                               #
+#  c    #                              #                               #
+#  c    #  cccccccccccccccccccccccccc  #                               #
+#  c    #  b  ######################c  #                               #
+#  c    #  c  #                    #c  #                               #
+#  c    #  c  #                    #c  #                               #
+#  c    #  c  #                    #c  #                               #
+#  c    #  c  #                    #c  #                               #
+#  c    #  c  #                    #c  #                               #
+#  c    #  c  #        mmmm        #c  #                               #
+#  c    #  i  #     ccccccccccccccccc  #                               #
+#  b    #  S  #     c                  #                               #
+#  c    #######     c###################                               #
+#  c                c                  #                               #
+#  c                c                  #                               #
+#  c                c                  #                               #
+# mcm           ccccb       m          #                               #
+# mcm           m   ccccccccc          #                               #
+# mcm                                  #                               #
+#  cm                                  ##########################      #
+#                                                                      #
+########################################################################
+position équipe: 141 (1,69)
+
+Grille solution trouvée:
+########################################################################
+#  S    #     #                                                        #
+#  I    #     #                        #                               #
+#  C    #     ##########################                               #
+#  C    #                              #                               #
+#  C    #  CCCCCCCCCCCCCCCCCCCCCCCCCC  #                               #
+#  C    #  C  ######################C  #                               #
+#  C    #  C  #                    #C  #                               #
+#  C    #  C  #                    #C  #                               #
+#  C    #  C  #                    #C  #                               #
+#  C    #  C  #                    #C  #                               #
+#  C    #  C  #                    #C  #                               #
+#  C    #  C  #        MMMM        #C  #                               #
+#  C    #  I  #     CCCCCCCCCCCCCCCCC  #                               #
+#  C    #  S  #     C                  #                               #
+#  C    #######     C###################                               #
+#  C                C                  #                               #
+#  C                C                  #                               #
+#  C                C                  #                               #
+# MCM           CCCCC       M          #                               #
+# MCM           M   CCCCCCCCC          #                               #
+# MCM                                  #                               #
+#  CM                                  ##########################      #
+#                                                                      #
+########################################################################
+position équipe: 947 (13,11)
+
+Stats:
+ Nombre d'états générés:	8802
+ Nombre d'états explorés:	8675
+ Coût de la solution trouvée: 	2429
+
+PLAN:
+W W W W S S S S S S S S S S S S S S S S S S S S S S W W W W W W W W W W W W W W W W W W W W W W W W W W W N N N N W W W W W W W W W W W W W W W W W W R N N N W W W W W W W W W W W W W N N N N N N N W N W N W N W N N N N 0 S S S S S S S S S S S S R N N N N N N N N N N N N 1 E E E E S S S S S S S S S S S S S S E E E E E E E E N N N E E E E E E E E E E E E E E E E E E E E E N N N N N N N N W W W W W W W W W W W W W W W W W W W W W W W W W S S S S S S S S 0 N N N N N N N R S S S S S S S 1 

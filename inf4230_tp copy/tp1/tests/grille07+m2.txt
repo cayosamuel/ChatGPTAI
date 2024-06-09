@@ -1,0 +1,31 @@
+Grille lue:
+###############################################
+#Siccc                            mmmmmmmmm   #
+#    ccccccccccccccciccbcccccccccccccccccccm  #
+#                            c     mmmmmmm  * #
+#                            i                #
+#                            b                #
+#              cccccccccccccccccc             #
+#              m                m             #
+###############################################
+position équipe: 185 (3,44)
+
+Grille solution trouvée:
+###############################################
+#SICCC                            MMMMMMMMM   #
+#    CCCCCCCCCCCCCCCICCCCCCCCCCCCCCCCCCCCCCM  #
+#                            C     MMMMMMM    #
+#                            I                #
+#                            C                #
+#              CCCCCCCCCCCCCCCCCC             #
+#              M                M             #
+###############################################
+position équipe: 217 (4,29)
+
+Stats:
+ Nombre d'états générés:	1416
+ Nombre d'états explorés:	1255
+ Coût de la solution trouvée: 	678
+
+PLAN:
+N W W W W W W W W W W W W W W W W W W W W W W W W 0 E E E R W W W 1 E E E E E E E E E S S 0 S R N 1 

@@ -1,0 +1,21 @@
+Grille lue:
+#############
+#Sjbcm      #
+#*          #
+#############
+position équipe: 27 (2,1)
+
+Grille solution trouvée:
+#############
+#SICCM      #
+#           #
+#############
+position équipe: 15 (1,2)
+
+Stats:
+ Nombre d'états générés:	24
+ Nombre d'états explorés:	14
+ Coût de la solution trouvée: 	6
+
+PLAN:
+N E E R W 1 

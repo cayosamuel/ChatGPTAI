@@ -1,0 +1,14 @@
+Grille lue:
+##########################################################
+#                   m                                    #
+#             m                                          #
+#  ScccibbbccccccccccccccbiS                             #
+#                                            *           #
+##########################################################
+position équipe: 277 (4,45)
+
+Stats:
+ Nombre d'états générés:	14336
+ Nombre d'états explorés:	14336
+ Coût de la solution trouvée: 	-1
+IMPOSSIBLE

@@ -1,0 +1,12 @@
+Grille lue:
+########################
+#*                     #
+# Sbbbbbbm             #
+########################
+position équipe: 25 (1,1)
+
+Stats:
+ Nombre d'états générés:	1408
+ Nombre d'états explorés:	1408
+ Coût de la solution trouvée: 	-1
+IMPOSSIBLE

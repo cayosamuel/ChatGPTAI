@@ -1,0 +1,31 @@
+Grille lue:
+################################################
+#  mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm  #
+#  cccccccccccccccccccccccicbcccccccicccccbcc  #
+#  i                                           #
+#  S                                           #
+#      *                                       #
+#                                              #
+#                                              #
+################################################
+position équipe: 247 (5,7)
+
+Grille solution trouvée:
+################################################
+#  MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM  #
+#  CCCCCCCCCCCCCCCCCCCCCCCICCCCCCCCCICCCCCCCC  #
+#  I                                           #
+#  S                                           #
+#                                              #
+#                                              #
+#                                              #
+################################################
+position équipe: 132 (2,36)
+
+Stats:
+ Nombre d'états générés:	1964
+ Nombre d'états explorés:	1633
+ Coût de la solution trouvée: 	54
+
+PLAN:
+N N N E E E E E E E E E E E E E E E E E E E 0 E E R W W 1 E E E E E E E E E E 0 E E E E E E R W W W W W W 1 

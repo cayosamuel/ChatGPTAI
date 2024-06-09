@@ -1,0 +1,29 @@
+Grille lue:
+################
+#Sicc    ccccm #
+#*  c   mcm    #
+#  mc    b     #
+#   bcccccm    #
+#      m       #
+#              #
+################
+position équipe: 33 (2,1)
+
+Grille solution trouvée:
+################
+#SICC    CCCCM #
+#   C   MCM    #
+#  MC    C     #
+#   CCCCCCM    #
+#      M       #
+#              #
+################
+position équipe: 18 (1,2)
+
+Stats:
+ Nombre d'états générés:	589
+ Nombre d'états explorés:	589
+ Coût de la solution trouvée: 	153
+
+PLAN:
+E N 0 E E S S S R N E E E E E R N N W W W W W W W 1 
