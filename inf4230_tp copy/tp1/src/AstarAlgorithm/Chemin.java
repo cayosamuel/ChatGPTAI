@@ -62,6 +62,14 @@ public class Chemin  implements Iterable<Position> {
         public java.util.Iterator<Position> iterator() {
             return chemin.iterator();
         }
+        @Override
+        public String toString() {
+           return "Chemin{" +
+            "chemin=" + chemin +
+            ", maison=" + maison +
+            '}';
+}
+
     }
     
 

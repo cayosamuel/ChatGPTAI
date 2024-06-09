@@ -178,6 +178,8 @@ public class AStarAlgorithm {
             return interrupteurState;
     }
     
+    //Debugger pour empecher une boucle infinie
+    
     public static List<String> astar(char[][] grid, State etat, List<Chemin> maisonNonConnecter, List<Position> interrupteurs, List<Position> conducteursbriser, List<String> solutionfinal) {
         return astar(grid, etat, maisonNonConnecter, interrupteurs, conducteursbriser, solutionfinal, 0);
     }
@@ -186,7 +188,7 @@ public class AStarAlgorithm {
             System.out.println("Max recursion depth reached, terminating.");
             return solutionfinal;
         }
-
+ 
         List<Position> parcoursEquipe = new ArrayList<>();
         List<String> solution = solutionfinal;
         Position specialNode = findClosesNoneConnectedHouse(etat);
@@ -203,6 +205,10 @@ public class AStarAlgorithm {
         for (Chemin c : maisonNonConnecter) {
             if (c.getMaison().equals(specialNode)) {
                 chemin = c;
+        // Ensure the path to the specialNode is correctly calculated and assigned
+        List<Position> pathToSpecialNode = findPathEquipe(grid, etat.getEqPos(), specialNode);
+        chemin.setChemin(pathToSpecialNode); // Ensure this method exists in the Chemin class
+        
                 break;
             }
         }
@@ -214,99 +220,88 @@ public class AStarAlgorithm {
 
         System.out.println("Found chemin: " + chemin);
 
-        if (brisFound(specialNode, maisonNonConnecter, conducteursbriser, grid, etat)) {
-            if (interrupteurState(specialNode, maisonNonConnecter, interrupteurs, grid, etat)) {
-                for (Position cell : chemin.getChemin()) {
-                    if (grid[cell.getLigne()][cell.getColonne()] == 'i') {
-                        parcoursEquipe = findPathEquipe(grid, etat.getEqPos(), cell);
-                        System.out.println("Path to interrupteur: " + parcoursEquipe);
-                        solution.addAll(Actions.transformpath(parcoursEquipe));
-                        etat.setEqPos(cell);
-                        int index = findIndexinterrupteur(interrupteurs, cell);
-                        Actions.switchOff(etat, index, solution);
-                        for (Position cell2 : chemin.getChemin()) {
-                            if (grid[cell2.getLigne()][cell2.getColonne()] == 'b') {
-                                parcoursEquipe = findPathEquipe(grid, etat.getEqPos(), cell2);
-                                System.out.println("Path to broken conductor: " + parcoursEquipe);
-                                solution.addAll(Actions.transformpath(parcoursEquipe));
-                                etat.setEqPos(cell2);
-                                int index2 = findIndexconducteurbriser(conducteursbriser, cell2);
-                                Actions.repair(etat, index2, solution);
-                                maisonNonConnecter.remove(chemin);
-                                etat.getMaisonPasconnecter().remove(chemin.getMaison());
-                                etat.setMaisonPasconnecter(updatelistmaisonsnonbrancher(maisonNonConnecter, cell, etat, grid, interrupteurs, conducteursbriser));
-                                break;
-                            }
-                        }
-                        break;
-                    } else {
-                        chemin.getChemin().remove(cell);
-                    }
-                }
-            } else {
-                for (Position b : chemin.getChemin()) {
-                    if (grid[b.getLigne()][b.getColonne()] == 'b') {
-                        parcoursEquipe = findPathEquipe(grid, etat.getEqPos(), b);
-                        System.out.println("Path to broken conductor without interrupteur: " + parcoursEquipe);
-                        solution.addAll(Actions.transformpath(parcoursEquipe));
-                        etat.setEqPos(b);
-                        int indexconducteur = findIndexconducteurbriser(conducteursbriser, b);
-                        Actions.repair(etat, indexconducteur, solution);
-                        maisonNonConnecter.remove(chemin);
-                        etat.getMaisonPasconnecter().remove(chemin.getMaison());
-                    }
+        // Debugging the conditions for invoking actions
+        boolean isBrisFound = brisFound(specialNode, maisonNonConnecter, conducteursbriser, grid, etat);
+        boolean isInterrupteurState = interrupteurState(specialNode, maisonNonConnecter, interrupteurs, grid, etat);
+
+        System.out.println("brisFound: " + isBrisFound);
+        System.out.println("interrupteurState: " + isInterrupteurState);
+
+        if (isBrisFound || isInterrupteurState) {
+            for (Position cell : chemin.getChemin()) {
+                if (isInterrupteurState && grid[cell.getLigne()][cell.getColonne()] == 'i') {
+                    parcoursEquipe = findPathEquipe(grid, etat.getEqPos(), cell);
+                    System.out.println("Path to interrupteur: " + parcoursEquipe);
+                    solution.addAll(Actions.transformpath(parcoursEquipe));
+                    etat.setEqPos(cell);
+                    int index = findIndexinterrupteur(interrupteurs, cell);
+                    Actions.switchOff(etat, index, solution);
+                    System.out.println("Switch off interrupteur at index: " + index);
+                    System.out.println("State after switch off: " + etat);
+                } else if (isBrisFound && grid[cell.getLigne()][cell.getColonne()] == 'b') {
+                    parcoursEquipe = findPathEquipe(grid, etat.getEqPos(), cell);
+                    System.out.println("Path to broken conductor: " + parcoursEquipe);
+                    solution.addAll(Actions.transformpath(parcoursEquipe));
+                    etat.setEqPos(cell);
+                    int index = findIndexconducteurbriser(conducteursbriser, cell);
+                    Actions.repair(etat, index, solution);
+                    System.out.println("Repair conductor at index: " + index);
+                    System.out.println("State after repair: " + etat);
                 }
             }
+
+            maisonNonConnecter.remove(chemin);
+            etat.getMaisonPasconnecter().remove(chemin.getMaison());
+            maisonNonConnecter = updatelistmaisonsnonbrancher(maisonNonConnecter, specialNode, etat, grid, interrupteurs, conducteursbriser);
         } else {
             for (Position cell : chemin.getChemin()) {
-                if (grid[cell.getLigne()][cell.getColonne()] == 'i') {
+                if (grid[cell.getLigne()][cell.getColonne()] == 'j') {
                     parcoursEquipe = findPathEquipe(grid, etat.getEqPos(), cell);
                     System.out.println("Path to interrupteur: " + parcoursEquipe);
                     solution.addAll(Actions.transformpath(parcoursEquipe));
                     etat.setEqPos(cell);
                     int index = findIndexinterrupteur(interrupteurs, cell);
                     Actions.switchOn(etat, index, solution);
+                    System.out.println("Switch on interrupteur at index: " + index);
+                    System.out.println("State after switch on: " + etat);
                     break;
                 }
             }
         }
-                // Update the special node after actions
-                Position newSpecialNode = findClosesNoneConnectedHouse(etat);
-                if (newSpecialNode.equals(specialNode)) {
-                    System.out.println("Special node did not change, terminating recursion to avoid infinite loop.");
-                    return solution;
-                }
+
+        // Recalculate the special node after actions
+        Position newSpecialNode = findClosesNoneConnectedHouse(etat);
+        System.out.println("New special node: " + newSpecialNode);
+
+        if (newSpecialNode.equals(specialNode)) {
+            System.out.println("Special node did not change, terminating recursion to avoid infinite loop.");
+            return solution;
+        }
 
         return astar(grid, etat, maisonNonConnecter, interrupteurs, conducteursbriser, solution, depth + 1);
     }
-
-
-
-    private static List<Position> updatelistmaisonsnonbrancher(List<Chemin>maisonsNonConnecter, Position interrupteurcommun, State etat, char[][] grid, List<Position> interrupteurs, List<Position> conducteursbriser){
-        List<Position> updatedList = etat.getMaisonPasconnecter();
-        //Trouver toutes les chemins des maisonsNonConnecter qui ont la meme position pour interrupteur que la maison qui vient d'etre connecter
+    private static List<Chemin> updatelistmaisonsnonbrancher(List<Chemin> maisonsNonConnecter, Position interrupteurcommun, State etat, char[][] grid, List<Position> interrupteurs, List<Position> conducteursbriser) {
+        List<Chemin> updatedList = new ArrayList<>(maisonsNonConnecter);
         List<Chemin> listmaisonavecmemeinterrupteur = new ArrayList<>();
         for (Chemin chemin : maisonsNonConnecter) {
-            for (Position cell2 : chemin) {
+            for (Position cell2 : chemin.getChemin()) {
                 if (cell2.equals(interrupteurcommun)) {
                     listmaisonavecmemeinterrupteur.add(chemin);
-                     break;
+                    break;
                 }
             }
         }
-        //For each house in listmaisonavecmemeinterrupteur, check if there's a broken conductor or closed interrupteur 
         for (Chemin maison : listmaisonavecmemeinterrupteur) {
-                boolean hasIssue = brisFound(maison.getMaison(), maisonsNonConnecter,conducteursbriser, grid, etat) ||
-                                   !interrupteurState(maison.getMaison(), maisonsNonConnecter,interrupteurs,  grid, etat);
+            boolean hasIssue = brisFound(maison.getMaison(), maisonsNonConnecter, conducteursbriser, grid, etat) ||
+                               !interrupteurState(maison.getMaison(), maisonsNonConnecter, interrupteurs, grid, etat);
 
-                if (!hasIssue) {
-                    //Enlever la maison de la etat.maisonPasconnecter et de la liste des chemin des maisonsNonConnecter
-                   maisonsNonConnecter.remove(maison);
-                   updatedList.remove(maison.getMaison());
+            if (!hasIssue) {
+                updatedList.remove(maison);
+                etat.getMaisonPasconnecter().remove(maison.getMaison());
+                System.out.println("Removing connected house: " + maison.getMaison());
             }
         }
         return updatedList;
-
     }
 
     private static int findIndexinterrupteur(List<Position> interrupteurs, Position cell) {
