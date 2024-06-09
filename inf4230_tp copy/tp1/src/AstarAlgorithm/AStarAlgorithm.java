@@ -114,6 +114,8 @@ public class AStarAlgorithm {
           specialNode = maison;
         }
       }
+      //Debugger pour voir la maison la plus proche est trouvée
+      System.out.println("Closest non-connected house: " + specialNode);
       return specialNode;
     }
 
@@ -174,6 +176,11 @@ public class AStarAlgorithm {
         //Reprend la solution qu'il vient de trouver apres avoir connecter une maison
         List<String> solution = solutionfinal;
         Position specialNode = findClosesNoneConnectedHouse(etat);
+
+        // debugger prints to see if the special node is found
+        System.out.println("Starting astar algorithm...");
+        System.out.println("Special node: " + specialNode);
+
         // Si un brise est trouvé dans le chemin
         if (brisFound(specialNode, maisonNonConnecter,conducteursbriser, grid, etat)) {
             //Trouver le chemin qui match la position du special node (maison non connectée)
@@ -184,6 +191,7 @@ public class AStarAlgorithm {
                         break;
                     } 
                 }
+                //debugger to see if the chemin is found
                 System.out.println("Found chemin: " + chemin);
             //Si un interrupteur est ouvert dans le chemin
             if (interrupteurState(specialNode, maisonNonConnecter,interrupteurs, grid, etat)) {
@@ -194,6 +202,7 @@ public class AStarAlgorithm {
                             //une fois l'interrupteur trouvé
                         if (grid[cell.getLigne()][cell.getColonne()] == 'i') {
                             parcoursEquipe = findPathEquipe(grid, etat.getEqPos(), cell);
+                            //debugger to see the path to the interrupteur
                             System.out.println("Path to interrupteur: " + parcoursEquipe);
                             //Ajoute le chemin à la solution
                             solution.addAll(Actions.transformpath(parcoursEquipe));
@@ -207,6 +216,7 @@ public class AStarAlgorithm {
                                         //conducteur brisé dans le chemin trouvé
                                 if (grid[cell2.getLigne()][cell2.getColonne()] == 'b') {
                                     parcoursEquipe = findPathEquipe(grid, etat.getEqPos(), cell2);
+                                    //debugger to see the path to the broken conductor
                                     System.out.println("Path to broken conductor: " + parcoursEquipe);
                                     solution.addAll(Actions.transformpath(parcoursEquipe));
                                     //Change la position de l'équipe à la position du conducteur brisé dans l'état initial
@@ -239,6 +249,7 @@ public class AStarAlgorithm {
                 for (Position b : chemin) {
                     if (grid[b.getLigne()][b.getColonne()] == 'b') {
                         parcoursEquipe = findPathEquipe(grid, etat.getEqPos(), b);
+                        //
                         System.out.println("Path to broken conductor without interrupteur: " + parcoursEquipe);
                         solution.addAll(Actions.transformpath(parcoursEquipe));
                         //Change la position de l'équipe à la position du conducteur brisé dans l'état initial

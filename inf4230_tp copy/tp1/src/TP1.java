@@ -55,7 +55,7 @@ public class TP1{
         List<Position> maisonPasconnecter = new ArrayList<>();
         List<Boolean> conducteursbriser = new ArrayList<>();
 
-        State etatInitial = new State(equipe, etatInterrupteurs, bris, maisonPasconnecter, conducteursbriser);
+        
 
         // Lire la carte et initialiser les données
         List<String> lignes = new ArrayList<>();
@@ -134,14 +134,14 @@ public class TP1{
             }
         }
 
+
         // debbuger print maisonPasconnecter
         for (Position maison : maisonPasconnecter) {
-            System.out.println(maison.getLigne() + " " + maison.getColonne());
+            System.out.println(maison.getLigne() + " 1." + maison.getColonne());
         }
-
+        // Initialiser l'état initial
+        State etatInitial = new State(equipe, etatInterrupteurs, bris, maisonPasconnecter, conducteursbriser);
         
-
-
         // Trouver le chemin de chaque source vers chaque maison et vérifier si la maison est connectée
         for (Position source : sources) {
             for (Position maison : maisons) {
@@ -176,9 +176,8 @@ public class TP1{
             }
         }
         //debugger print maisonPasconnecter This prints twice for some reason
-        
         for (Position maison : maisonPasconnecter) {
-            System.out.println(maison.getLigne() + " " + maison.getColonne());
+            System.out.println(maison.getLigne() + " 2." + maison.getColonne());
         }
 
 
