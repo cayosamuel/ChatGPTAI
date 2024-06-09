@@ -8,11 +8,11 @@ import java.util.ArrayList;
 
 
 public class Chemin  implements Iterable<Position> {
-        private Position source;
-        private Position maison;
-        private List<Position> chemin;
-        private double cout;
-
+public Chemin(Position source, Position maison, List<Position> chemin) {
+ this.source = source;
+ this.maison = maison;
+ this.chemin = chemin != null ? chemin : new ArrayList<>();
+}
         public Chemin(Position source, Position maison, List<Position> chemin) {
             chemin = new ArrayList<>();
             this.source = source;
